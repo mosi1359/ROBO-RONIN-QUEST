@@ -1,0 +1,1786 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ROBO-RONIN QUEST | آزمایشگاه مهندسی</title>
+    <style>
+         :root {
+            --ink: #172b3a;
+            --muted: #647789;
+            --line: #dce5eb;
+            --paper: #f4f7f9;
+            --card: #fff;
+            --teal: #087f8c;
+            --teal2: #e4f5f5;
+            --orange: #f29b38;
+            --green: #16845b;
+            --red: #c64b4b;
+            --shadow: 0 12px 32px #20394c0d;
+            --dojo: navy
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+        
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Tahoma, "Segoe UI", sans-serif;
+            line-height: 1.65
+        }
+        
+        button,
+        input,
+        select {
+            font: inherit
+        }
+        
+        button {
+            cursor: pointer;
+            border: 0
+        }
+        
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            outline: 3px solid #72cbd0;
+            outline-offset: 2px
+        }
+        
+        .wrap {
+            max-width: 1240px;
+            margin: auto;
+            padding: 22px
+        }
+        
+        header {
+            background: var(--dojo)
+        }
+        
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+        
+        .mark {
+            width: 48px;
+            height: 48px;
+            border-radius: 15px;
+            background: var(--ink);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 24px
+        }
+        
+        .brand h1 {
+            font-size: 19px;
+            margin: 0;
+            letter-spacing: .5px
+        }
+        
+        .brand p {
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: 12px
+        }
+        
+        .pill {
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 12px
+        }
+        
+        .hero {
+            background: linear-gradient(110deg, #fff, #edf8f8);
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            padding: 28px;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 24px;
+            align-items: center;
+            box-shadow: var(--shadow);
+            overflow: hidden
+        }
+        
+        .eyebrow {
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--teal);
+            letter-spacing: .4px
+        }
+        
+        .hero h2 {
+            font-size: clamp(27px, 4vw, 42px);
+            line-height: 1.3;
+            margin: 8px 0 12px
+        }
+        
+        .hero p {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 0 20px
+        }
+        
+        .btn {
+            background: var(--teal);
+            color: white;
+            border-radius: 12px;
+            padding: 11px 16px;
+            font-weight: bold
+        }
+        
+        .btn.secondary {
+            background: #fff;
+            color: var(--ink);
+            border: 1px solid var(--line)
+        }
+        
+        .hero-art {
+            min-height: 190px;
+            display: grid;
+            place-items: center
+        }
+        
+        .hero-art svg {
+            max-width: 100%;
+            height: auto
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 18px 0 26px
+        }
+        
+        .stat {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 14px 16px
+        }
+        
+        .stat small {
+            color: var(--muted)
+        }
+        
+        .stat strong {
+            display: block;
+            font-size: 21px;
+            margin-top: 2px
+        }
+        
+        .layout {
+            display: grid;
+            grid-template-columns: 230px minmax(0, 1fr);
+            gap: 18px
+        }
+        
+        .side,
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow)
+        }
+        
+        .side {
+            padding: 14px;
+            height: max-content;
+            position: sticky;
+            top: 12px
+        }
+        
+        .side h3 {
+            font-size: 13px;
+            margin: 4px 10px 10px
+        }
+        
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px
+        }
+        
+        .nav button {
+            text-align: right;
+            background: transparent;
+            padding: 11px 12px;
+            border-radius: 11px;
+            color: var(--muted)
+        }
+        
+        .nav button.active,
+        .nav button:hover {
+            background: var(--teal2);
+            color: var(--teal);
+            font-weight: bold
+        }
+        
+        .side-note {
+            margin-top: 14px;
+            padding: 12px;
+            background: #f8fafb;
+            border-radius: 12px;
+            font-size: 12px;
+            color: var(--muted)
+        }
+        
+        .main {
+            min-width: 0
+        }
+        
+        .view {
+            display: none
+        }
+        
+        .view.active {
+            display: block
+        }
+        
+        .panel {
+            padding: 20px;
+            margin-bottom: 16px
+        }
+        
+        .panel-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px
+        }
+        
+        .panel h3 {
+            margin: 0;
+            font-size: 18px
+        }
+        
+        .sub {
+            color: var(--muted);
+            font-size: 13px;
+            margin: 5px 0 0
+        }
+        
+        .tag {
+            background: var(--teal2);
+            color: var(--teal);
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 11px;
+            white-space: nowrap
+        }
+        
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 1fr 310px;
+            gap: 16px
+        }
+        
+        .board {
+            background: #fbfdfd;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            min-height: 310px;
+            display: grid;
+            place-items: center;
+            padding: 12px
+        }
+        
+        .board svg {
+            width: 100%;
+            max-width: 560px;
+            height: auto
+        }
+        
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+        
+        .control {
+            padding: 13px;
+            border: 1px solid var(--line);
+            border-radius: 14px
+        }
+        
+        .control label {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: bold
+        }
+        
+        .control input[type=range] {
+            width: 100%;
+            accent-color: var(--teal);
+            margin-top: 12px
+        }
+        
+        .readouts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 12px
+        }
+        
+        .reading {
+            background: #f7fafb;
+            border: 1px solid var(--line);
+            padding: 12px;
+            border-radius: 12px
+        }
+        
+        .reading small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px
+        }
+        
+        .reading strong {
+            font-size: 19px
+        }
+        
+        .status {
+            font-size: 12px;
+            padding: 10px 12px;
+            background: #f1f8f4;
+            color: var(--green);
+            border-radius: 11px
+        }
+        
+        .status.warn {
+            background: #fff4e7;
+            color: #a9650b
+        }
+        
+        .two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+        
+        .component {
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            padding: 14px;
+            background: #fff;
+            text-align: right;
+            transition: .18s
+        }
+        
+        .component:hover {
+            transform: translateY(-2px);
+            border-color: #9dcfd2
+        }
+        
+        .component .emoji {
+            font-size: 28px
+        }
+        
+        .component strong {
+            display: block;
+            margin: 7px 0 2px
+        }
+        
+        .component small {
+            color: var(--muted)
+        }
+        
+        .component-detail {
+            margin-top: 14px;
+            padding: 16px;
+            border-radius: 14px;
+            background: #f7fafb;
+            border: 1px solid var(--line);
+            min-height: 96px
+        }
+        
+        .robot-stage {
+            background: linear-gradient(#f9fcfd, #edf4f6);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 10px;
+            display: grid;
+            place-items: center
+        }
+        
+        .robot-stage svg {
+            width: 100%;
+            max-width: 650px;
+            height: auto
+        }
+        
+        .robot-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px
+        }
+        
+        .robot-controls button {
+            border-radius: 10px;
+            padding: 10px 13px;
+            background: #eef3f6;
+            color: var(--ink)
+        }
+        
+        .robot-controls button.primary {
+            background: var(--teal);
+            color: white
+        }
+        
+        .mission-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+        
+        .mission {
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 15px
+        }
+        
+        .mission .n {
+            font-size: 11px;
+            color: var(--teal);
+            font-weight: bold
+        }
+        
+        .mission h4 {
+            margin: 5px 0
+        }
+        
+        .mission p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px
+        }
+        
+        .quiz-opt {
+            display: block;
+            width: 100%;
+            text-align: right;
+            padding: 11px 13px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fff;
+            margin: 8px 0
+        }
+        
+        .quiz-opt:hover {
+            border-color: var(--teal)
+        }
+        
+        .feedback {
+            margin-top: 10px;
+            font-size: 13px
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 12px;
+            padding: 22px 4px
+        }
+        
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: #13273780;
+            display: none;
+            place-items: center;
+            padding: 18px;
+            z-index: 10
+        }
+        
+        .modal-backdrop.open {
+            display: grid
+        }
+        
+        .modal {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 25px 90px #0003
+        }
+        
+        .modal h3 {
+            margin: 0 0 6px
+        }
+        
+        .modal p {
+            font-size: 13px;
+            color: var(--muted)
+        }
+        
+        .field {
+            display: block;
+            margin: 12px 0
+        }
+        
+        .field span {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 5px
+        }
+        
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fff
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px
+        }
+        
+        .modal-actions>* {
+            flex: 1
+        }
+        
+        .tiny {
+            font-size: 11px;
+            color: var(--muted)
+        }
+        
+        .progress {
+            height: 7px;
+            background: #e9eff2;
+            border-radius: 9px;
+            overflow: hidden;
+            margin-top: 10px
+        }
+        
+        .progress span {
+            display: block;
+            width: 12%;
+            height: 100%;
+            background: var(--teal);
+            transition: width .3s
+        }
+        
+        @media(max-width:900px) {
+            .layout {
+                grid-template-columns: 1fr
+            }
+            .side {
+                position: static
+            }
+            .nav {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr)
+            }
+            .sim-grid {
+                grid-template-columns: 1fr 270px
+            }
+            .hero {
+                grid-template-columns: 1fr .7fr
+            }
+        }
+        
+        @media(max-width:650px) {
+            .wrap {
+                padding: 13px
+            }
+            .top {
+                align-items: flex-start
+            }
+            .pill {
+                display: none
+            }
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 22px
+            }
+            .hero-art {
+                min-height: 100px
+            }
+            .hero-art svg {
+                max-height: 145px
+            }
+            .stats {
+                gap: 8px
+            }
+            .stat {
+                padding: 10px
+            }
+            .stat strong {
+                font-size: 17px
+            }
+            .sim-grid,
+            .two {
+                grid-template-columns: 1fr
+            }
+            .component-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+            .mission-list {
+                grid-template-columns: 1fr
+            }
+            .panel {
+                padding: 14px
+            }
+            .nav {
+                grid-template-columns: repeat(2, 1fr)
+            }
+            .readouts {
+                gap: 6px
+            }
+            .reading {
+                padding: 8px
+            }
+            .reading strong {
+                font-size: 16px
+            }
+            .footer {
+                flex-direction: column
+            }
+        }
+        /* Added: centered Sensei header, darker schedule sidebar, persistent resistor chart and timer */
+        
+         :root {
+            --dojo: #293344;
+            --dojo2: #354154;
+            --gold: #f5c66a
+        }
+        
+        .top {
+            position: relative;
+            min-height: 70px;
+            padding: 10px 14px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow)
+        }
+        
+        .brand {
+            z-index: 1
+        }
+        
+        .center-brand {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            white-space: nowrap
+        }
+        
+        .samurai-mark {
+            width: 43px;
+            height: 43px;
+            border-radius: 13px;
+            background: var(--dojo);
+            color: var(--gold);
+            display: grid;
+            place-items: center;
+            font-size: 24px;
+            border: 1px solid #46546a
+        }
+        
+        .center-brand strong {
+            display: block;
+            color: var(--dojo);
+            font-size: 17px;
+            line-height: 1.25
+        }
+        
+        .center-brand small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 3px;
+            letter-spacing: .5px
+        }
+        
+        .top .pill {
+            margin-right: auto;
+            z-index: 1
+        }
+        
+        .layout {
+            grid-template-columns: 270px minmax(0, 1fr);
+            align-items: start
+        }
+        
+        .side {
+            background: var(--dojo);
+            border-color: #1f2938;
+            color: #f6f8fb
+        }
+        
+        .side h3 {
+            color: #fff
+        }
+        
+        .side .nav button {
+            color: #d6deea
+        }
+        
+        .side .nav button.active,
+        .side .nav button:hover {
+            background: var(--dojo2);
+            color: var(--gold)
+        }
+        
+        .side-note {
+            background: #354154;
+            color: #e1e7ef;
+            border: 1px solid #46546a
+        }
+        
+        .schedule-box {
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 14px;
+            background: #202938;
+            border: 1px solid #46546a
+        }
+        
+        .schedule-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px
+        }
+        
+        .timer-display {
+            font-size: 28px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: var(--gold);
+            text-align: center;
+            padding: 8px 0 2px;
+            font-variant-numeric: tabular-nums
+        }
+        
+        .timer-actions {
+            display: flex;
+            gap: 6px
+        }
+        
+        .timer-actions button {
+            flex: 1;
+            padding: 7px 5px;
+            border-radius: 8px;
+            background: #455268;
+            color: #fff;
+            font-size: 11px
+        }
+        
+        .timer-actions button:first-child {
+            background: var(--gold);
+            color: #242c39;
+            font-weight: bold
+        }
+        
+        .timer-status {
+            font-size: 11px;
+            color: #d4dce7;
+            text-align: center;
+            margin: 5px 0 8px
+        }
+        
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 10px
+        }
+        
+        .schedule-item {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 27px 1fr auto;
+            gap: 7px;
+            align-items: center;
+            text-align: right;
+            padding: 8px;
+            border-radius: 9px;
+            background: #303b4e;
+            color: #e9edf3;
+            border: 1px solid transparent;
+            font-size: 11px
+        }
+        
+        .schedule-item.active {
+            border-color: var(--gold);
+            background: #414c60;
+            color: #fff
+        }
+        
+        .schedule-item.done {
+            opacity: .65
+        }
+        
+        .schedule-item .sn {
+            width: 24px;
+            height: 24px;
+            display: grid;
+            place-items: center;
+            border-radius: 7px;
+            background: #4c5a70;
+            color: var(--gold);
+            font-weight: bold
+        }
+        
+        .schedule-item .dur {
+            color: #c8d1de;
+            font-size: 10px;
+            white-space: nowrap
+        }
+        
+        .schedule-progress {
+            height: 5px;
+            background: #4b576b;
+            border-radius: 9px;
+            overflow: hidden;
+            margin-top: 9px
+        }
+        
+        .schedule-progress span {
+            display: block;
+            width: 0;
+            height: 100%;
+            background: var(--gold);
+            transition: width .2s
+        }
+        
+        .alert-banner {
+            display: none;
+            margin-top: 9px;
+            padding: 9px;
+            border-radius: 9px;
+            background: #fff0d5;
+            color: #7b4900;
+            font-size: 11px;
+            font-weight: bold
+        }
+        
+        .alert-banner.show {
+            display: block;
+            animation: pulseAlert 1s ease-in-out 2
+        }
+        
+        @keyframes pulseAlert {
+            50% {
+                opacity: .55
+            }
+        }
+        
+        .color-study {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 280px;
+            gap: 16px;
+            align-items: start
+        }
+        
+        .color-chart {
+            position: sticky;
+            top: 12px;
+            background: #f8fafb;
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            padding: 13px;
+            max-height: calc(100vh - 24px);
+            overflow: auto
+        }
+        
+        .color-chart h4 {
+            margin: 0 0 8px
+        }
+        
+        .color-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px
+        }
+        
+        .color-table th,
+        .color-table td {
+            padding: 6px 5px;
+            text-align: right;
+            border-bottom: 1px solid #e0e7eb
+        }
+        
+        .swatch {
+            display: inline-block;
+            width: 17px;
+            height: 17px;
+            border-radius: 5px;
+            vertical-align: middle;
+            border: 1px solid #bbc5ca;
+            margin-left: 5px
+        }
+        
+        .band-calculator {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid var(--line)
+        }
+        
+        .band-calculator label {
+            display: block;
+            font-size: 11px;
+            margin: 8px 0 4px
+        }
+        
+        .band-calculator select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            font-size: 12px
+        }
+        
+        .band-result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e5f5f4;
+            color: #075d65;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: bold
+        }
+        
+        .mission-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 8px 0
+        }
+        
+        .mission-meta span {
+            font-size: 11px;
+            border-radius: 7px;
+            background: #f2f5f7;
+            padding: 4px 7px;
+            color: var(--muted)
+        }
+        
+        @media(max-width:900px) {
+            .layout {
+                grid-template-columns: 1fr
+            }
+            .side {
+                position: static
+            }
+            .color-study {
+                grid-template-columns: 1fr
+            }
+            .color-chart {
+                position: static;
+                max-height: none
+            }
+            .schedule-list {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+        
+        @media(max-width:650px) {
+            .top {
+                padding: 10px;
+                min-height: 72px
+            }
+            .brand h1 {
+                font-size: 12px
+            }
+            .brand p {
+                display: none
+            }
+            .brand .mark {
+                width: 34px;
+                height: 34px;
+                font-size: 18px
+            }
+            .center-brand {
+                gap: 6px
+            }
+            .center-brand strong {
+                font-size: 12px
+            }
+            .center-brand small {
+                font-size: 9px
+            }
+            .samurai-mark {
+                width: 32px;
+                height: 32px;
+                font-size: 18px
+            }
+            .top .pill {
+                display: none
+            }
+            .schedule-list {
+                grid-template-columns: repeat(2, 1fr)
+            }
+            .schedule-item {
+                grid-template-columns: 24px 1fr
+            }
+            .schedule-item .dur {
+                grid-column: 2
+            }
+            .color-study {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="top">
+            <div class="brand">
+                <div class="mark">⚙</div>
+                <div>
+                    <h1>ROBO-RONIN QUEST</h1>
+                    <p>آزمایشگاه تعاملی رباتیک · نسخه فرانت‌اند</p>
+                </div>
+            </div>
+            <div class="center-brand" aria-label="Sensei About Online Class">
+                <div class="samurai-mark" aria-hidden="true">🥷</div>
+                <div><strong>Sensei About</strong><strong>Online Class</strong><small>ROBO-RONIN QUEST</small></div>
+            </div>
+            <div class="pill" id="userPill"> مهمان · سطح مقدماتی</div>
+        </header>
+        <section class="hero">
+            <div>
+                <div class="eyebrow">ENGINEERING PLAYGROUND / 01</div>
+                <h2>یاد بگیر. بساز. <span style="color:var(--teal)">آزمایش کن.</span></h2>
+                <p>از شناخت قطعات تا شبیه‌سازی مدار و کنترل رونین؛ هر مفهوم را با دست‌کاری پارامترها کشف کن، نه فقط با خواندن.</p><button class="btn" id="startBtn">ورود به آزمایشگاه ←</button> <button class="btn secondary" id="signupBtn">ثبت‌نام</button></div>
+            <div class="hero-art"><svg viewBox="0 0 390 220" role="img" aria-label="تصویر شماتیک ربات و مدار"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#087f8c"/><stop offset="1" stop-color="#75c7c8"/></linearGradient></defs><g fill="none" stroke="#c7d9df" stroke-width="1.4"><path d="M10 40H95V75H130M250 35H340V85H375M18 170H92V145H130M268 155H340V190H380"/><circle cx="95" cy="40" r="4" fill="#f29b38"/><circle cx="340" cy="85" r="4" fill="#087f8c"/><circle cx="92" cy="170" r="4" fill="#087f8c"/></g><g transform="translate(110 30)"><rect x="0" y="30" width="165" height="120" rx="18" fill="#fff" stroke="#b9cdd4" stroke-width="2"/><rect x="17" y="45" width="131" height="68" rx="10" fill="#eaf4f5" stroke="#b8d6d9"/><rect x="45" y="58" width="75" height="43" rx="6" fill="url(#g)"/><path d="M54 68h56M54 78h56M54 88h56" stroke="#fff" stroke-width="2" opacity=".7"/><circle cx="32" cy="128" r="6" fill="#f29b38"/><circle cx="145" cy="128" r="6" fill="#087f8c"/><rect x="26" y="5" width="112" height="34" rx="12" fill="#172b3a"/><circle cx="53" cy="22" r="7" fill="#75c7c8"/><circle cx="113" cy="22" r="7" fill="#75c7c8"/><path d="M62 22h42" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="28" cy="158" r="16" fill="#172b3a"/><circle cx="137" cy="158" r="16" fill="#172b3a"/><circle cx="28" cy="158" r="6" fill="#a9c1c8"/><circle cx="137" cy="158" r="6" fill="#a9c1c8"/></g><g fill="#087f8c"><circle cx="40" cy="85" r="3"/><circle cx="350" cy="140" r="3"/><circle cx="310" cy="22" r="3"/></g></svg></div>
+        </section>
+        <div class="stats">
+            <div class="stat"><small>مأموریت‌های انجام‌شده</small><strong id="doneStat">۰ از ۶</strong></div>
+            <div class="stat"><small>امتیاز تجربه (XP)</small><strong id="xpStat">۰ XP</strong></div>
+            <div class="stat"><small>وضعیت آزمایشگاه</small><strong style="color:var(--green);font-size:17px">آماده اجرا</strong></div>
+        </div>
+        <div class="layout">
+            <aside class="side">
+                <h3>ناوبری آزمایشگاه</h3>
+                <nav class="nav">
+                    <button class="active" data-view="circuit">⚡ شبیه‌ساز مدار</button>
+                    <button data-view="parts">🧩 کتابخانه قطعات</button>
+                    <button data-view="robot">🤖 کارگاه رونین</button>
+                    <button data-view="missions">🎯 مأموریت‌ها</button>
+                    <button data-view="quiz">🧠 آزمون کوتاه</button>
+                    <button data-view="about">ℹ راهنمای محیط</button>
+                </nav>
+                <div class="schedule-box" aria-label="زمان‌بندی ۹ مأموریت">
+                    <div class="schedule-head"><span>⏱ زمان‌بندی مأموریت‌ها</span><span id="sessionLabel">۱ / ۹</span></div>
+                    <div class="timer-display" id="missionTimer" aria-live="polite">120:00</div>
+                    <div class="timer-status" id="timerStatus">آماده شروع جلسه</div>
+                    <div class="timer-actions"><button id="timerStart">▶ شروع</button><button id="timerPause">Ⅱ مکث</button><button id="timerReset">↺ بازنشانی</button></div>
+                    <div class="schedule-progress"><span id="scheduleProgressBar"></span></div>
+                    <div class="schedule-list" id="scheduleList">
+                        <button class="schedule-item active" data-session="0"><span class="sn">۱</span><span>Forge Awakening</span><span class="dur">۱۲۰ دقیقه</span></button>
+                        <button class="schedule-item" data-session="1"><span class="sn">۲</span><span>Shadow Tracker</span><span class="dur">۱۲۰ دقیقه</span></button>
+                        <button class="schedule-item" data-session="2"><span class="sn">۳</span><span>Bat Sonar</span><span class="dur">۱۲۰ دقیقه</span></button>
+                        <button class="schedule-item" data-session="3"><span class="sn">۴</span><span>War Wheels</span><span class="dur">۱۲۰ دقیقه</span></button>
+                        <button class="schedule-item" data-session="4"><span class="sn">۵</span><span>Brain & Muscle</span><span class="dur">۱۲۰ دقیقه</span></button>
+                        <button class="schedule-item" data-session="5"><span class="sn">۶</span><span>Circuit Shadows</span><span class="dur">۱۲۰ دقیقه</span></button>
+                        <button class="schedule-item" data-session="6"><span class="sn">۷</span><span>Ghost Path</span><span class="dur">۱۲۰ دقیقه</span></button>
+                        <button class="schedule-item" data-session="7"><span class="sn">۸</span><span>Shogun Calibration</span><span class="dur">۱۲۰ دقیقه</span></button>
+                        <button class="schedule-item" data-session="8"><span class="sn">۹</span><span>Ronin Final Battle</span><span class="dur">۱۲۰ دقیقه</span></button>
+                    </div>
+                    <div class="alert-banner" id="timerAlert" role="alert">هشدار: زمان مأموریت به پایان رسید!</div>
+                </div>
+                <div class="side-note"><b>قانون شوگون</b><br>هر تغییر، یک فرضیه است. مقدار را تغییر بده و نتیجه را با محاسبه مقایسه کن.</div>
+            </aside>
+            <main class="main">
+                <section class="view active" id="view-circuit">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h3>⚡ مدار LED و قانون اهم</h3>
+                                <p class="sub">ولتاژ منبع و مقاومت را تغییر بده؛ جریان و توان به‌صورت زنده محاسبه می‌شوند.</p>
+                            </div><span class="tag">SIM / 01</span></div>
+                        <div class="sim-grid">
+                            <div>
+                                <div class="board"><svg viewBox="0 0 540 290" role="img" aria-label="مدار سری منبع مقاومت و LED"><defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#087f8c"/></marker></defs><path d="M85 72H185M255 72H330M380 72H455V220H85V72" stroke="#087f8c" stroke-width="4" fill="none" stroke-linejoin="round"/><path d="M85 125V165M65 135H105M72 153H98" stroke="#172b3a" stroke-width="4"/><text x="40" y="115" font-size="14" fill="#172b3a">منبع</text><text x="72" y="128" font-size="16" fill="#172b3a">+</text><rect x="185" y="52" width="70" height="40" rx="5" fill="#f7dfae" stroke="#b9822b" stroke-width="2"/><path d="M195 54v36M205 54v36M235 54v36M245 54v36" stroke="#a46d24" stroke-width="4"/><text id="resSvg" x="220" y="42" text-anchor="middle" font-size="13" fill="#172b3a">330 Ω</text><circle cx="355" cy="72" r="24" fill="#fff1d9" stroke="#d18a20" stroke-width="3"/><path d="M344 60L366 72L344 84Z" fill="#f29b38"/><path d="M368 59V85" stroke="#b96c14" stroke-width="3"/><path id="glow" d="M339 48L330 36M371 48L380 36" stroke="#f29b38" stroke-width="3" opacity=".25"/><text x="355" y="112" text-anchor="middle" font-size="13" fill="#172b3a">LED</text><text x="270" y="252" text-anchor="middle" font-size="14" fill="#647789">مدار سری · جریان در تمام مسیر یکسان است</text><circle cx="85" cy="220" r="5" fill="#087f8c"/><circle cx="455" cy="220" r="5" fill="#087f8c"/><text x="270" y="20" text-anchor="middle" font-size="13" fill="#647789">منبع DC → مقاومت محدودکننده → LED</text></svg></div>
+                                <div class="readouts">
+                                    <div class="reading"><small>جریان تقریبی</small><strong id="currentRead">۹٫۱ mA</strong></div>
+                                    <div class="reading"><small>افت روی مقاومت</small><strong id="dropRead">۳٫۰ V</strong></div>
+                                    <div class="reading"><small>توان مقاومت</small><strong id="powerRead">۰٫۰۳ W</strong></div>
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <div class="control"><label for="voltage">ولتاژ منبع <span id="voltageLabel">۵٫۰ V</span></label><input id="voltage" type="range" min="3" max="12" step=".5" value="5"></div>
+                                <div class="control"><label for="resistance">مقاومت <span id="resistanceLabel">۳۳۰ Ω</span></label><input id="resistance" type="range" min="100" max="1500" step="10" value="330"></div>
+                                <div class="control"><label for="ledDrop">افت ولتاژ LED <span id="ledLabel">۲٫۰ V</span></label><input id="ledDrop" type="range" min="1.6" max="3.2" step=".1" value="2"></div>
+                                <div id="circuitStatus" class="status">جریان در محدوده نمونه آموزشی است.</div><button class="btn secondary" id="resetCircuit">بازنشانی مقادیر</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <h3>🧠 چالش مهندسی</h3>
+                        <p class="sub">اگر ولتاژ منبع ثابت بماند و مقاومت را بیشتر کنی، جریان چه تغییری می‌کند؟ ابتدا پیش‌بینی کن، سپس اسلایدر را جابه‌جا کن.</p><button class="btn secondary" id="showHint">نمایش راهنمای شوگون</button>
+                        <p id="hintText" class="sub" hidden>طبق قانون اهم، I = (Vمنبع − VLED) ÷ R. با افزایش مقاومت، جریان کاهش می‌یابد. این مدل آموزشی است و رفتار غیرخطی واقعی LED را به‌طور کامل شبیه‌سازی نمی‌کند.</p>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h3>📚 درسنامه کامل‌تر: مقاومت و قانون اهم</h3>
+                                <p class="sub">جدول رنگ در همین بخش همیشه در دسترس می‌ماند؛ در دسکتاپ کنار درس ثابت است و در موبایل زیر درس قرار می‌گیرد.</p>
+                            </div><span class="tag">LEARN / 06</span></div>
+                        <div class="color-study">
+                            <div>
+                                <h4>مقاومت چه کاری انجام می‌دهد؟</h4>
+                                <p class="sub">مقاومت جریان را محدود می‌کند و افت ولتاژ ایجاد می‌کند. مقدار آن با اهم (Ω) بیان می‌شود. در مدار سری، جریان در همه اجزای ایده‌آل یکسان است و مقاومت‌های سری با هم جمع می‌شوند.</p>
+                                <h4 style="margin-top:16px">قانون اهم</h4>
+                                <div class="reading"><strong>V = I × R</strong>
+                                    <p class="sub">I = V ÷ R &nbsp; | &nbsp; R = V ÷ I</p>
+                                </div>
+                                <p class="sub">مثال: اگر ۱۰ ولت روی مقاومت ۲ کیلو‌اهم باشد، جریان ایده‌آل برابر ۵ میلی‌آمپر است. برای LED، ابتدا افت ولتاژ LED را از ولتاژ منبع کم می‌کنیم: R = (Vمنبع − VLED) ÷ I.</p>
+                                <h4 style="margin-top:16px">نمونه طراحی مقاومت LED</h4>
+                                <p class="sub">منبع ۵V، افت LED برابر ۲V و جریان هدف ۱۰mA: مقاومت محاسباتی ۳۰۰Ω است؛ مقدار استاندارد نزدیک ۳۳۰Ω معمولاً انتخاب محافظه‌کارانه‌تری است. در مدار واقعی، توان مقاومت و مشخصات LED را هم بررسی کن.</p>
+                                <h4 style="margin-top:16px">سری و موازی</h4>
+                                <div class="two">
+                                    <div class="control"><b>مدار سری</b>
+                                        <p class="sub">مقاومت کل = جمع مقاومت‌ها؛ جریان در اجزای سری یکسان است.</p>
+                                    </div>
+                                    <div class="control"><b>مدار موازی</b>
+                                        <p class="sub">ولتاژ شاخه‌ها یکسان است؛ دو مقاومت ۱kΩ موازی، معادل ۵۰۰Ω دارند.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <aside class="color-chart">
+                                <h4>🎨 جدول رنگ مقاومت</h4>
+                                <p class="tiny">۴ نوار: رقم اول، رقم دوم، ضریب، تلرانس</p>
+                                <table class="color-table">
+                                    <thead>
+                                        <tr>
+                                            <th>رنگ</th>
+                                            <th>رقم</th>
+                                            <th>ضریب</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#171717"></span>مشکی</td>
+                                            <td>۰</td>
+                                            <td>×۱</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#8b572a"></span>قهوه‌ای</td>
+                                            <td>۱</td>
+                                            <td>×۱۰</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#d63a32"></span>قرمز</td>
+                                            <td>۲</td>
+                                            <td>×۱۰۰</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#f0802b"></span>نارنجی</td>
+                                            <td>۳</td>
+                                            <td>×۱k</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#f0d43a"></span>زرد</td>
+                                            <td>۴</td>
+                                            <td>×۱۰k</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#25864b"></span>سبز</td>
+                                            <td>۵</td>
+                                            <td>×۱۰۰k</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#2874c8"></span>آبی</td>
+                                            <td>۶</td>
+                                            <td>×۱M</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#8052b8"></span>بنفش</td>
+                                            <td>۷</td>
+                                            <td>×۱۰M</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#9ca3af"></span>خاکستری</td>
+                                            <td>۸</td>
+                                            <td>×۱۰۰M</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="swatch" style="background:#f8f8f4"></span>سفید</td>
+                                            <td>۹</td>
+                                            <td>×۱G</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="tiny" style="margin-top:8px">تلرانس رایج: قهوه‌ای ±۱٪، قرمز ±۲٪، طلایی ±۵٪، نقره‌ای ±۱۰٪.</p>
+                                <div class="band-calculator"><b>ماشین‌حساب ۴ نوار</b><label for="band1">نوار اول</label><select id="band1"></select><label for="band2">نوار دوم</label><select id="band2"></select><label for="band3">ضریب</label><select id="band3"></select><label for="band4">تلرانس</label>
+                                    <select id="band4"></select>
+                                    <div class="band-result" id="bandResult" aria-live="polite">۴٫۷ kΩ ±۵٪</div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </section>
+                <section class="view" id="view-parts">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h3>🧩 کتابخانه قطعات</h3>
+                                <p class="sub">یک قطعه را انتخاب کن تا نقش، پایه‌ها و نکته ایمنی آن را ببینی.</p>
+                            </div><span class="tag">PARTS / 02</span></div>
+                        <div class="component-grid" id="componentGrid">
+                            <button class="component" data-part="resistor"><span class="emoji">〰️</span><strong>مقاومت</strong><small>محدودکردن جریان</small></button>
+                            <button class="component" data-part="led"><span class="emoji">💡</span><strong>LED</strong><small>نور و قطبیت</small></button>
+                            <button class="component" data-part="arduino"><span class="emoji">🟦</span><strong>Arduino UNO</strong><small>کنترل‌گر</small></button>
+                            <button class="component" data-part="ultrasonic"><span class="emoji">🦇</span><strong>HC-SR04</strong><small>اندازه‌گیری فاصله</small></button>
+                            <button class="component" data-part="driver"><span class="emoji">🔌</span><strong>TB6612FNG</strong><small>راه‌انداز موتور</small></button>
+                            <button class="component" data-part="encoder"><span class="emoji">⚙️</span><strong>Encoder</strong><small>بازخورد حرکت</small></button>
+                        </div>
+                        <div class="component-detail" id="partDetail"><b>یک قطعه را انتخاب کن.</b>
+                            <p class="sub">شوگون کاربرد و نکته مهم آن را توضیح می‌دهد.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="view" id="view-robot">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h3>🤖 کارگاه رونین</h3>
+                                <p class="sub">کنترل نمایشی ربات، همراه با نمایش وضعیت موتور و سنسور. این کنترل به سخت‌افزار واقعی متصل نیست.</p>
+                            </div><span class="tag">ROBOT / 03</span></div>
+                        <div class="robot-stage"><svg viewBox="0 0 600 300" role="img" aria-label="ربات دوچرخ با سنسور فاصله"><g stroke="#d2e0e5" stroke-width="1"><path d="M20 40H580M20 80H580M20 120H580M20 160H580M20 200H580M20 240H580M60 20V280M100 20V280M140 20V280M180 20V280M220 20V280M260 20V280M300 20V280M340 20V280M380 20V280M420 20V280M460 20V280M500 20V280M540 20V280"/></g><g id="robotBody" transform="translate(300 150)"><rect x="-85" y="-65" width="170" height="130" rx="22" fill="#172b3a"/><rect x="-62" y="-42" width="124" height="84" rx="12" fill="#e7f3f4" stroke="#087f8c" stroke-width="3"/><rect x="-27" y="-22" width="54" height="44" rx="5" fill="#087f8c"/><circle cx="-12" cy="-7" r="4" fill="#fff"/><circle cx="12" cy="-7" r="4" fill="#fff"/><path d="M-12 8Q0 17 12 8" stroke="#fff" stroke-width="3" fill="none"/><rect x="-105" y="-45" width="20" height="90" rx="7" fill="#263f50"/><rect x="85" y="-45" width="20" height="90" rx="7" fill="#263f50"/><rect x="-43" y="-84" width="86" height="24" rx="7" fill="#fff" stroke="#9cb7c0" stroke-width="2"/><circle cx="-24" cy="-72" r="8" fill="#087f8c"/><circle cx="24" cy="-72" r="8" fill="#087f8c"/><path d="M0 -60V-43" stroke="#f29b38" stroke-width="3"/></g><path id="sensorBeam" d="M300 60Q245 20 190 60M300 60Q355 20 410 60" stroke="#f29b38" stroke-width="3" stroke-dasharray="6 6" fill="none" opacity=".8"/><text x="300" y="24" text-anchor="middle" fill="#647789" font-size="13">HC-SR04 · فاصله نمایشی</text></svg></div>
+                        <div class="robot-controls"><button class="primary" data-move="forward">↑ حرکت جلو</button><button data-move="left">↶ چرخش چپ</button><button data-move="right">چرخش راست ↷</button><button data-move="stop">■ توقف</button><button data-move="obstacle">⚠️ شبیه‌سازی مانع</button></div>
+                        <div class="readouts">
+                            <div class="reading"><small>فرمان حرکت</small><strong id="robotMode">توقف</strong></div>
+                            <div class="reading"><small>سرعت هدف</small><strong id="robotSpeed">۰ RPM</strong></div>
+                            <div class="reading"><small>فاصله مانع</small><strong id="robotDistance">— cm</strong></div>
+                        </div>
+                        <p id="robotMsg" class="sub">برای آزمایش رفتار ربات، یک فرمان انتخاب کن.</p>
+                    </div>
+                </section>
+                <section class="view" id="view-missions">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h3>🎯 مأموریت‌های رونین</h3>
+                                <p class="sub">هر مأموریت را انجام بده و وضعیت پیشرفت در همین مرورگر ذخیره می‌شود.</p>
+                            </div><span class="tag">QUESTS / 04</span></div>
+                        <div class="mission-list">
+                            <div class="mission"><span class="n">MISSION 01</span>
+                                <h4>Forge Awakening · جریان امن LED</h4>
+                                <div class="mission-meta"><span>۱۵ دقیقه مقدمه</span><span>۳۰ دقیقه مدار</span></div>
+                                <p>مدار LED را بساز و جریان را زیر ۱۵mA نگه دار.</p><button class="btn secondary missionBtn" data-mission="0" style="margin-top:12px">بررسی مدار</button></div>
+                            <div class="mission"><span class="n">MISSION 02</span>
+                                <h4>Shadow Tracker · شناخت قطعات</h4>
+                                <div class="mission-meta"><span>۱۲۰ دقیقه</span></div>
+                                <p>قطعات را بررسی کن و منطق سنسور IR را بشناس.</p><button class="btn secondary missionBtn" data-mission="1" style="margin-top:12px">رفتن به قطعات</button></div>
+                            <div class="mission"><span class="n">MISSION 03</span>
+                                <h4>Bat Sonar · توقف امن</h4>
+                                <div class="mission-meta"><span>۱۲۰ دقیقه</span></div>
+                                <p>مانع را شبیه‌سازی کن و توقف امن را مشاهده کن.</p><button class="btn secondary missionBtn" data-mission="2" style="margin-top:12px">رفتن به ربات</button></div>
+                            <div class="mission"><span class="n">MISSION 04</span>
+                                <h4>War Wheels · قانون اهم و سرعت</h4>
+                                <div class="mission-meta"><span>۱۲۰ دقیقه</span></div>
+                                <p>قانون اهم را حل کن و نقش بازخورد را بشناس.</p><button class="btn secondary missionBtn" data-mission="3" style="margin-top:12px">رفتن به آزمون</button></div>
+                            <div class="mission"><span class="n">MISSION 05</span>
+                                <h4>Brain & Muscle · مدار سری</h4>
+                                <div class="mission-meta"><span>۱۲۰ دقیقه</span></div>
+                                <p>دلیل یکسان بودن جریان در مسیر سری را توضیح بده.</p><button class="btn secondary missionBtn" data-mission="4" style="margin-top:12px">مشاهده نکته</button></div>
+                            <div class="mission"><span class="n">MISSION 06</span>
+                                <h4>Circuit Shadows · گزارش مهندسی</h4>
+                                <div class="mission-meta"><span>۱۲۰ دقیقه</span></div>
+                                <p>اصل Sense → Think → Act و عیب‌یابی را مرور کن.</p><button class="btn secondary missionBtn" data-mission="5" style="margin-top:12px">ثبت مأموریت</button></div>
+                            <div class="mission"><span class="n">MISSION 07</span>
+                                <h4>Ghost Path · عبور از مانع</h4>
+                                <div class="mission-meta"><span>۱۲۰ دقیقه</span></div>
+                                <p>طرحی برای عبور از مانع و بازیابی خط بنویس.</p><button class="btn secondary missionBtn" data-mission="6" style="margin-top:12px">ثبت تکمیل</button></div>
+                            <div class="mission"><span class="n">MISSION 08</span>
+                                <h4>Shogun Calibration · کالیبراسیون</h4>
+                                <div class="mission-meta"><span>۱۲۰ دقیقه</span></div>
+                                <p>تنظیمات را آزمایش و نتایج قبل و بعد را ثبت کن.</p><button class="btn secondary missionBtn" data-mission="7" style="margin-top:12px">ثبت تکمیل</button></div>
+                            <div class="mission"><span class="n">MISSION 09</span>
+                                <h4>Ronin Final Battle · نبرد نهایی</h4>
+                                <div class="mission-meta"><span>۱۲۰ دقیقه</span></div>
+                                <p>ربات را در مسیر نهایی آزمایش و گزارش فنی تهیه کن.</p><button class="btn secondary missionBtn" data-mission="8" style="margin-top:12px">ثبت تکمیل</button></div>
+                        </div>
+                        <div class="progress"><span id="progressBar"></span></div>
+                        <p id="missionMsg" class="sub">پیشرفت: ۰٪</p>
+                    </div>
+                </section>
+                <section class="view" id="view-quiz">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h3>🧠 آزمون کوتاه شوگون</h3>
+                                <p class="sub">یک پاسخ را انتخاب کن؛ بازخورد فوری دریافت می‌کنی.</p>
+                            </div><span class="tag">QUIZ / 05</span></div>
+                        <p><b>سؤال ۱.</b> منبع ۵ ولت، افت LED برابر ۲ ولت و مقاومت ۳۰۰ اهم است. جریان تقریبی چقدر است؟</p>
+                        <button class="quiz-opt" data-answer="a">۱ mA</button><button class="quiz-opt" data-answer="b">۱۰ mA</button><button class="quiz-opt" data-answer="c">۱۰۰ mA</button>
+                        <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+                        <div class="panel" style="background:#f8fafb;margin-top:18px;margin-bottom:0">
+                            <h3 style="font-size:15px">راهنمای فرمول</h3>
+                            <p class="sub">I = (Vمنبع − VLED) ÷ R. برای این مدل، افت LED از ولتاژ منبع کم می‌شود؛ سپس نتیجه بر مقاومت تقسیم می‌شود.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="view" id="view-about">
+                    <div class="panel">
+                        <h3>ℹ راهنمای محیط</h3>
+                        <p class="sub">این نسخه یک نمونه فرانت‌اند مستقل است. اطلاعات پیشرفت در localStorage مرورگر ذخیره می‌شود؛ هنوز حساب کاربری، سرور یا پایگاه داده وجود ندارد.</p>
+                        <div class="two">
+                            <div class="control"><b>Sense</b>
+                                <p class="sub">اندازه‌گیری محیط با سنسورها.</p>
+                            </div>
+                            <div class="control"><b>Think</b>
+                                <p class="sub">تبدیل داده به تصمیم.</p>
+                            </div>
+                            <div class="control"><b>Act</b>
+                                <p class="sub">اجرای فرمان با موتور و عملگر.</p>
+                            </div>
+                            <div class="control"><b>Feedback</b>
+                                <p class="sub">مقایسه نتیجه با هدف و اصلاح رفتار.</p>
+                            </div>
+                        </div>
+                        <p class="sub">شبیه‌سازی مدار LED در این صفحه یک مدل ساده آموزشی است؛ جایگزین اندازه‌گیری واقعی، دیتاشیت یا شبیه‌ساز SPICE نیست.</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <footer class="footer"><span>© ROBO-RONIN QUEST · Engineering Playground</span><span>فرانت‌اند مستقل · آماده توسعه برای API</span></footer>
+    </div>
+    <div class="modal-backdrop" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <form class="modal" id="signupForm">
+            <h3 id="modalTitle">ثبت‌نام در آکادمی رونین</h3>
+            <p>برای این نمونه، مشخصات فقط در همین مرورگر ذخیره می‌شود و به سرور ارسال نمی‌شود.</p>
+            <label class="field"><span>نام کارآموز *</span><input id="studentName" required maxlength="70" placeholder="مثلاً آرمان"></label>
+            <label class="field"><span>ایمیل (اختیاری)</span><input id="studentEmail" type="email" placeholder="name@example.com"></label>
+            <label class="field"><span>سطح تجربه</span><select id="studentLevel"><option>مقدماتی</option><option>متوسط</option><option>پیشرفته</option></select></label>
+            <div class="modal-actions"><button class="btn" type="submit">ذخیره پروفایل</button><button class="btn secondary" type="button" id="closeModal">بعداً</button></div>
+            <p class="tiny">نکته: از اطلاعات حساس استفاده نکن؛ این فرم صرفاً نمایشی است.</p>
+        </form>
+    </div>
+    <script>
+        const $ = s => document.querySelector(s),
+            $$ = s => [...document.querySelectorAll(s)];
+        const fa = n => Number(n).toLocaleString('fa-IR', {
+            maximumFractionDigits: 2
+        });
+        let state = {
+            done: [],
+            xp: 0,
+            profile: null
+        };
+        try {
+            const saved = JSON.parse(localStorage.getItem('rrq-lab-state') || '{}');
+            state = {...state,
+                ...saved
+            };
+        } catch (e) {}
+
+        function persist() {
+            try {
+                localStorage.setItem('rrq-lab-state', JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        function renderStats() {
+            $('#doneStat').textContent = `${fa(state.done.length)} از ۹`, $('#xpStat').textContent = `${fa(state.xp)} XP`, $('#progressBar').style.width = (state.done.length / 9 * 100) + '%', $('#missionMsg').textContent = `پیشرفت: ${fa(Math.round(state.done.length/9*100))}٪`, $('#userPill').textContent = state.profile ? `${state.profile.name} · سطح ${state.profile.level}` : ' مهمان · سطح مقدماتی';
+        }
+
+        function complete(i) {
+            if (!state.done.includes(i)) {
+                state.done.push(i);
+                state.xp += 100;
+                persist();
+                renderStats();
+            }
+        }
+
+        function go(view) {
+            $$('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + view));
+            $$('.nav button').forEach(b => b.classList.toggle('active', b.dataset.view === view));
+            window.scrollTo({
+                top: document.querySelector('.layout').offsetTop - 10,
+                behavior: 'smooth'
+            });
+        }
+        $$('.nav button').forEach(b => b.addEventListener('click', () => go(b.dataset.view)));
+        $('#startBtn').onclick = () => go('circuit');
+        const modal = $('#signupModal');
+        $('#signupBtn').onclick = () => modal.classList.add('open');
+        $('#closeModal').onclick = () => modal.classList.remove('open');
+        modal.addEventListener('click', e => {
+            if (e.target === modal) modal.classList.remove('open')
+        });
+        $('#signupForm').addEventListener('submit', e => {
+            e.preventDefault();
+            state.profile = {
+                name: $('#studentName').value.trim(),
+                email: $('#studentEmail').value.trim(),
+                level: $('#studentLevel').value
+            };
+            persist();
+            renderStats();
+            modal.classList.remove('open');
+            $('#signupBtn').textContent = 'ویرایش پروفایل';
+        });
+
+        function calcCircuit() {
+            const v = +$('#voltage').value,
+                r = +$('#resistance').value,
+                led = +$('#ledDrop').value;
+            const available = Math.max(0, v - led),
+                i = available / r * 1000,
+                p = (i / 1000) ** 2 * r;
+            $('#voltageLabel').textContent = fa(v.toFixed(1)) + ' V';
+            $('#resistanceLabel').textContent = fa(r) + ' Ω';
+            $('#ledLabel').textContent = fa(led.toFixed(1)) + ' V';
+            $('#resSvg').textContent = fa(r) + ' Ω';
+            $('#currentRead').textContent = fa(i.toFixed(1)) + ' mA';
+            $('#dropRead').textContent = fa(available.toFixed(2)) + ' V';
+            $('#powerRead').textContent = fa(p.toFixed(3)) + ' W';
+            $('#glow').setAttribute('opacity', Math.min(.95, i / 20));
+            const status = $('#circuitStatus');
+            status.classList.toggle('warn', i > 20 || i < 1);
+            status.textContent = i > 20 ? 'هشدار آموزشی: جریان بالا است؛ مقاومت را افزایش بده.' : i < 1 ? 'جریان بسیار کم است؛ LED ممکن است کم‌نور باشد.' : 'جریان در محدوده نمونه آموزشی است.';
+            if (i <= 15) complete(0);
+        }
+        ['voltage', 'resistance', 'ledDrop'].forEach(id => $('#' + id).addEventListener('input', calcCircuit));
+        $('#resetCircuit').onclick = () => {
+            $('#voltage').value = 5;
+            $('#resistance').value = 330;
+            $('#ledDrop').value = 2;
+            calcCircuit()
+        };
+        $('#showHint').onclick = () => {
+            $('#hintText').hidden = !$('#hintText').hidden;
+            $('#showHint').textContent = $('#hintText').hidden ? 'نمایش راهنمای شوگون' : 'پنهان‌کردن راهنما'
+        };
+        const parts = {
+            resistor: ['مقاومت', 'مقدار مقاومت بر حسب اهم بیان می‌شود و در مدل ساده مدار LED جریان را محدود می‌کند.', 'نکته: توان نامی و مقدار اهم را پیش از اتصال بررسی کن.'],
+            led: ['LED', 'دیود نورافشان قطبیت دارد و در مدار واقعی باید با مقاومت محدودکننده جریان استفاده شود.', 'نکته: پایه آند و کاتد را از دیتاشیت یا شکل قطعه شناسایی کن.'],
+            arduino: ['Arduino UNO', 'میکروکنترلر ورودی‌ها را می‌خواند و بر اساس برنامه خروجی تولید می‌کند.', 'نکته: پایه‌های ورودی/خروجی را با ولتاژ مجاز برد هماهنگ کن.'],
+            ultrasonic: ['HC-SR04', 'با ارسال پالس اولتراسونیک و اندازه‌گیری زمان Echo فاصله را تخمین می‌زند.', 'نکته: زاویه و جنس سطح مانع روی نتیجه اثر می‌گذارند.'],
+            driver: ['TB6612FNG', 'درایور موتور، سیگنال‌های کنترل را برای راه‌اندازی دو موتور DC به کار می‌گیرد.', 'نکته: زمین مشترک و محدوده ولتاژ تغذیه را رعایت کن.'],
+            encoder: ['Encoder', 'پالس‌های متناسب با حرکت شفت تولید می‌کند و امکان تخمین سرعت و بازخورد را می‌دهد.', 'نکته: CPR/PPR را از مشخصات همان موتور بررسی کن.']
+        };
+        $$('.component').forEach(b => b.onclick = () => {
+            const p = parts[b.dataset.part];
+            $('#partDetail').innerHTML = `<b>${p[0]}</b><p>${p[1]}</p><p class="sub">${p[2]}</p>`;
+            complete(1)
+        });
+        let robot = {
+            mode: 'توقف',
+            speed: 0,
+            distance: null,
+            angle: 0
+        };
+
+        function robotRender() {
+            $('#robotMode').textContent = robot.mode;
+            $('#robotSpeed').textContent = fa(robot.speed) + ' RPM';
+            $('#robotDistance').textContent = robot.distance === null ? '— cm' : fa(robot.distance) + ' cm';
+            $('#robotBody').setAttribute('transform', `translate(300 150) rotate(${robot.angle})`);
+            $('#robotMsg').textContent = robot.mode === 'مانع شناسایی شد' ? 'فاصله کم است؛ کنترل امن فرمان توقف صادر کرد.' : `وضعیت نمایشی: ${robot.mode}. اتصال به سخت‌افزار واقعی وجود ندارد.`;
+        }
+        $$('[data-move]').forEach(b => b.onclick = () => {
+            const m = b.dataset.move;
+            if (m === 'forward') {
+                robot = {...robot,
+                    mode: 'حرکت جلو',
+                    speed: 110,
+                    distance: robot.distance
+                };
+                if (robot.distance !== null && robot.distance < 25) {
+                    robot.mode = 'توقف امن';
+                    robot.speed = 0;
+                }
+            }
+            if (m === 'left') {
+                robot.angle -= 20;
+                robot.mode = 'چرخش چپ';
+                robot.speed = 55;
+            }
+            if (m === 'right') {
+                robot.angle += 20;
+                robot.mode = 'چرخش راست';
+                robot.speed = 55;
+            }
+            if (m === 'stop') {
+                robot.mode = 'توقف';
+                robot.speed = 0;
+            }
+            if (m === 'obstacle') {
+                robot.distance = 18;
+                robot.mode = 'مانع شناسایی شد';
+                robot.speed = 0;
+                complete(2);
+            }
+            robotRender();
+        });
+        const quizButtons = $$('.quiz-opt');
+        quizButtons.forEach(b => b.onclick = () => {
+            quizButtons.forEach(x => x.style.borderColor = 'var(--line)');
+            if (b.dataset.answer === 'b') {
+                b.style.borderColor = 'var(--green)';
+                $('#quizFeedback').textContent = 'درست است! (۵−۲) ÷ ۳۰۰ = ۰٫۰۱ آمپر، یعنی ۱۰ میلی‌آمپر.';
+                $('#quizFeedback').style.color = 'var(--green)';
+                complete(3);
+            } else {
+                b.style.borderColor = 'var(--red)';
+                $('#quizFeedback').textContent = 'هنوز نه؛ اول افت LED را از ولتاژ منبع کم کن و بر مقاومت تقسیم کن.';
+                $('#quizFeedback').style.color = 'var(--red)';
+            }
+        });
+        $$('.missionBtn').forEach(b => b.onclick = () => {
+            const i = +b.dataset.mission;
+            if (i === 0) {
+                go('circuit');
+                calcCircuit();
+            }
+            if (i === 1) go('parts');
+            if (i === 2) go('robot');
+            if (i === 3) go('quiz');
+            if (i === 4) {
+                $('#showHint').click();
+                go('circuit');
+            }
+            if (i === 5) {
+                go('about');
+                complete(5);
+            }
+            if (i >= 6) {
+                complete(i);
+                $('#missionMsg').textContent = `مأموریت ${fa(i+1)} ثبت شد؛ اجرای عملی را در گزارش خود مستند کن.`;
+            }
+            if (i === 0 && ((5 - 2) / 330 * 1000) <= 15) complete(0);
+        });
+
+        // Nine-session schedule timer. Alerts at two minutes remaining and at session end.
+        const sessions = ["Forge Awakening", "Shadow Tracker", "Bat Sonar", "War Wheels", "Brain & Muscle Synergy", "Circuit Shadows", "Ghost Path", "Shogun Calibration", "Ronin Final Battle"];
+        let currentSession = 0,
+            remainingSeconds = 7200,
+            timerRunning = false,
+            timerInterval = null,
+            warningShown = false;
+
+        function renderTimer() {
+            const m = Math.floor(remainingSeconds / 60),
+                sec = remainingSeconds % 60;
+            $('#missionTimer').textContent = String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+            $('#sessionLabel').textContent = fa(currentSession + 1) + ' / ۹';
+            $('#timerStatus').textContent = timerRunning ? 'جلسه در حال اجراست' : remainingSeconds === 0 ? 'زمان جلسه تمام شد' : 'آماده شروع جلسه';
+            $('#scheduleProgressBar').style.width = ((7200 - remainingSeconds) / 7200 * 100) + '%';
+            $$('.schedule-item').forEach((b, i) => {
+                b.classList.toggle('active', i === currentSession);
+                b.classList.toggle('done', i < currentSession);
+            });
+        }
+
+        function stopTimer() {
+            timerRunning = false;
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function timerTick() {
+            if (remainingSeconds > 0) {
+                remainingSeconds--;
+                if (remainingSeconds === 120 && !warningShown) {
+                    warningShown = true;
+                    $('#timerAlert').textContent = '⏰ فقط ۲ دقیقه تا پایان این مأموریت مانده است!';
+                    $('#timerAlert').classList.add('show');
+                }
+                renderTimer();
+            }
+            if (remainingSeconds <= 0) {
+                stopTimer();
+                $('#timerAlert').textContent = '🔔 زمان مأموریت به پایان رسید! برای ادامه، جلسه بعد را انتخاب کن.';
+                $('#timerAlert').classList.add('show');
+                $('#timerStatus').textContent = 'پایان زمان';
+                renderTimer();
+            }
+        }
+        $('#timerStart').addEventListener('click', () => {
+            if (remainingSeconds <= 0) return;
+            if (!timerRunning) {
+                timerRunning = true;
+                $('#timerAlert').classList.remove('show');
+                timerInterval = setInterval(timerTick, 1000);
+                renderTimer();
+            }
+        });
+        $('#timerPause').addEventListener('click', () => {
+            stopTimer();
+            renderTimer();
+        });
+        $('#timerReset').addEventListener('click', () => {
+            stopTimer();
+            remainingSeconds = 7200;
+            warningShown = false;
+            $('#timerAlert').classList.remove('show');
+            renderTimer();
+        });
+        $$('.schedule-item').forEach(b => b.addEventListener('click', () => {
+            stopTimer();
+            currentSession = +b.dataset.session;
+            remainingSeconds = 7200;
+            warningShown = false;
+            $('#timerAlert').classList.remove('show');
+            renderTimer();
+        }));
+        const colorData = [{
+            name: 'مشکی',
+            hex: '#171717',
+            digit: 0,
+            mult: 1
+        }, {
+            name: 'قهوه‌ای',
+            hex: '#8b572a',
+            digit: 1,
+            mult: 10
+        }, {
+            name: 'قرمز',
+            hex: '#d63a32',
+            digit: 2,
+            mult: 100
+        }, {
+            name: 'نارنجی',
+            hex: '#f0802b',
+            digit: 3,
+            mult: 1000
+        }, {
+            name: 'زرد',
+            hex: '#f0d43a',
+            digit: 4,
+            mult: 10000
+        }, {
+            name: 'سبز',
+            hex: '#25864b',
+            digit: 5,
+            mult: 100000
+        }, {
+            name: 'آبی',
+            hex: '#2874c8',
+            digit: 6,
+            mult: 1000000
+        }, {
+            name: 'بنفش',
+            hex: '#8052b8',
+            digit: 7,
+            mult: 10000000
+        }, {
+            name: 'خاکستری',
+            hex: '#9ca3af',
+            digit: 8,
+            mult: 100000000
+        }, {
+            name: 'سفید',
+            hex: '#f8f8f4',
+            digit: 9,
+            mult: 1000000000
+        }];
+        const tolData = [{
+            name: 'قهوه‌ای ±۱٪',
+            value: 1
+        }, {
+            name: 'قرمز ±۲٪',
+            value: 2
+        }, {
+            name: 'سبز ±۰٫۵٪',
+            value: .5
+        }, {
+            name: 'آبی ±۰٫۲۵٪',
+            value: .25
+        }, {
+            name: 'بنفش ±۰٫۱٪',
+            value: .1
+        }, {
+            name: 'خاکستری ±۰٫۰۵٪',
+            value: .05
+        }, {
+            name: 'طلایی ±۵٪',
+            value: 5
+        }, {
+            name: 'نقره‌ای ±۱۰٪',
+            value: 10
+        }];
+
+        function fillBandSelect(id, items, selected) {
+            const el = $('#' + id);
+            if (!el) return;
+            el.innerHTML = items.map((x, i) => `<option value="${i}" ${i===selected?'selected':''}>${x.name}</option>`).join('');
+            el.addEventListener('change', calcBands);
+        }
+
+        function fmtOhms(n) {
+            if (n >= 1e6) return fa(n / 1e6) + ' MΩ';
+            if (n >= 1e3) return fa(n / 1e3) + ' kΩ';
+            return fa(n) + ' Ω';
+        }
+
+        function calcBands() {
+            const a = colorData[+$('#band1').value],
+                b = colorData[+$('#band2').value],
+                m = colorData[+$('#band3').value],
+                t = tolData[+$('#band4').value],
+                value = (a.digit * 10 + b.digit) * m.mult;
+            $('#bandResult').textContent = fmtOhms(value) + ' ±' + fa(t.value) + '٪';
+        }
+        fillBandSelect('band1', colorData, 4);
+        fillBandSelect('band2', colorData, 7);
+        fillBandSelect('band3', colorData, 2);
+        fillBandSelect('band4', tolData, 6);
+        renderTimer();
+        calcBands();
+
+        renderStats();
+        calcCircuit();
+        robotRender();
+    </script>
+</body>
+
+</html>
